@@ -1,3 +1,88 @@
-.App {
-  text-align: center;
+img {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.navbar {
+  background-color: #6a61c0;
+}
+
+.btn-purple {
+  background-color: #8981d8;
+  color: #fff;
+}
+
+.btn-purple:hover {
+  background-color: #8078cb;
+  color: #fff;
+}
+
+.project-item .card {
+  border-left: 4px solid orange;
+  box-shadow: 0px 1px 2px rgb(192, 192, 192);
+}
+
+.fa.fa-tasks {
+  color: rgb(1, 104, 56);
+}
+.fa.fa-edit {
+  color: #026cb3;
+}
+
+.fa.fa-trash-alt {
+  color: rgb(206, 8, 8);
+}
+
+.list-group-item.delete:hover {
+  cursor: pointer;
+  background-color: rgb(255, 192, 192);
+}
+
+.list-group-item.update:hover {
+  cursor: pointer;
+  background-color: rgb(209, 221, 247);
+}
+
+.list-group-item.board:hover {
+  cursor: pointer;
+  background-color: rgb(218, 250, 237);
+}
+
+.landing {
+  position: relative;
+  /* background: url("../img/showcase.jpg") no-repeat; */
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  margin-top: -24px;
+  margin-bottom: -50px;
+}
+
+.landing-inner {
+  padding-top: 80px;
+}
+
+.dark-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card-form {
+  opacity: 0.9;
+}
+
+.latest-profiles-img {
+  width: 40px;
+  height: 40px;
+}
+
+.form-control::placeholder {
+  color: #bbb !important;
 }
