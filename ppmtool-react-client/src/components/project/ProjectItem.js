@@ -4,7 +4,7 @@ class ProjectItem extends Component {
   render() {
     return (
       <div className="container project-item">
-        <div className="card card-body mb-3">
+        <div className="card card-body mb-3 shadow-sm">
           <div className="row">
             <div className="col-2">
               <span className="mx-auto">REACT</span>
