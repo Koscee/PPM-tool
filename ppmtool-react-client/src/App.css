@@ -14,9 +14,17 @@ a {
   background-color: #8981d8;
   color: #fff;
 }
-
 .btn-purple:hover {
   background-color: #8078cb;
+  color: #fff;
+}
+
+.btn-reset {
+  background-color: rgb(248, 145, 11);
+  color: #fff;
+}
+.btn-reset:hover {
+  background-color: rgb(238, 135, 0);
   color: #fff;
 }
 
