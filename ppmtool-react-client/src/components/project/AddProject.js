@@ -59,16 +59,6 @@ class AddProject extends Component {
                 </div>
 
                 <div className="my-3">
-                  <textarea
-                    className="form-control form-control-lg"
-                    placeholder="Project Description"
-                    name="description"
-                    value={this.state.description}
-                    onChange={this.onInputChange}
-                  ></textarea>
-                </div>
-
-                <div className="my-3">
                   <h6>Start Date</h6>
                   <input
                     type="date"
@@ -90,13 +80,30 @@ class AddProject extends Component {
                   />
                 </div>
 
-                <div className="row mt-4">
+                <div className="my-3">
+                  <textarea
+                    className="form-control form-control-lg"
+                    style={{ height: "150px" }}
+                    placeholder="Project Description"
+                    name="description"
+                    value={this.state.description}
+                    onChange={this.onInputChange}
+                  ></textarea>
+                </div>
+
+                <div className="row my-4">
                   <div className="col-6">
-                    <input type="reset" className="btn btn-reset w-100" />
+                    <input
+                      type="reset"
+                      className="btn btn-reset bg-gradient w-100 py-2"
+                    />
                   </div>
 
                   <div className="col-6 me-auto">
-                    <input type="submit" className="btn btn-purple w-100" />
+                    <input
+                      type="submit"
+                      className="btn btn-purple bg-gradient w-100 py-2"
+                    />
                   </div>
                 </div>
               </form>
