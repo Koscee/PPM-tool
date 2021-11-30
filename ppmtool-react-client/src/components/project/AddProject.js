@@ -10,9 +10,29 @@ class AddProject extends Component {
     description: "",
     start_date: "",
     end_date: "",
+    errors: {},
   };
 
   state = this.initialState;
+
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.errors) {
+  //     this.setState({ errors: nextProps.errors });
+  //   }
+  //   console.log(nextProps.errors);
+  // }
+
+  // solves componentWillReceiveProps deprication warning
+  static getDerivedStateFromProps(props, state) {
+    if (props.errors !== state.errors) {
+      return {
+        ...state,
+        errors: props.errors,
+      };
+    }
+
+    return null;
+  }
 
   onInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -20,7 +40,14 @@ class AddProject extends Component {
 
   onFormSubmit = (e) => {
     e.preventDefault();
-    const newProject = this.state;
+    const newProject = {
+      projectName: this.state.projectName,
+      projectIdentifier: this.state.projectIdentifier,
+      description: this.state.description,
+      start_date: this.state.start_date,
+      end_date: this.state.end_date,
+    };
+
     this.props.createProject(newProject, this.props.history);
   };
 
@@ -29,6 +56,8 @@ class AddProject extends Component {
   };
 
   render() {
+    const { errors } = this.state;
+
     return (
       <div className="project">
         <div className="container">
@@ -48,6 +77,7 @@ class AddProject extends Component {
                     value={this.state.projectName}
                     onChange={this.onInputChange}
                   />
+                  <p>{errors.projectName}</p>
                 </div>
 
                 <div className="my-3">
@@ -59,6 +89,7 @@ class AddProject extends Component {
                     value={this.state.projectIdentifier}
                     onChange={this.onInputChange}
                   />
+                  <p>{errors.projectIdentifier}</p>
                 </div>
 
                 <div className="my-3">
@@ -92,6 +123,7 @@ class AddProject extends Component {
                     value={this.state.description}
                     onChange={this.onInputChange}
                   ></textarea>
+                  <p>{errors.description}</p>
                 </div>
 
                 <div className="row my-4">
@@ -120,6 +152,11 @@ class AddProject extends Component {
 
 AddProject.propTypes = {
   createProject: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
-export default connect(null, { createProject })(AddProject);
+const mapStateToProps = (state) => ({
+  errors: state.errors,
+});
+
+export default connect(mapStateToProps, { createProject })(AddProject);
