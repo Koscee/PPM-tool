@@ -1,15 +1,19 @@
 import axios from "axios";
-import { GET_ERRORS, GET_PROJECTS, REMOVE_ERRORS } from "./types";
+import { GET_ERRORS, GET_PROJECT, GET_PROJECTS, REMOVE_ERRORS } from "./types";
+
+const dispatchAction = (dispatchFn, type, payload) => {
+  dispatchFn({
+    type,
+    payload,
+  });
+};
 
 export const createProject = (project, history) => async (dispatch) => {
   try {
     await axios.post("http://localhost:8080/api/project", project);
     history.push("/dashboard");
   } catch (error) {
-    dispatch({
-      type: GET_ERRORS,
-      payload: error.response.data,
-    });
+    dispatchAction(dispatch, GET_ERRORS, error.response.data);
   }
 };
 
@@ -18,16 +22,15 @@ export const createProject = (project, history) => async (dispatch) => {
  * this is used to clear form errors
  */
 export const clearFormErrors = () => (dispatch) => {
-  dispatch({
-    type: REMOVE_ERRORS,
-    payload: {},
-  });
+  dispatchAction(dispatch, REMOVE_ERRORS, {});
 };
 
 export const getProjects = () => async (dispatch) => {
   const res = await axios.get("http://localhost:8080/api/project/all");
-  dispatch({
-    type: GET_PROJECTS,
-    payload: res.data,
-  });
+  dispatchAction(dispatch, GET_PROJECTS, res.data);
+};
+
+export const getProject = (id, history) => async (dispatch) => {
+  const res = await axios.get(`http://localhost:8080/api/project/${id}`);
+  dispatchAction(dispatch, GET_PROJECT, res.data);
 };
