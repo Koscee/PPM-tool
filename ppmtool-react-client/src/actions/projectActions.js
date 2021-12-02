@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ERRORS } from "./types";
+import { GET_ERRORS, REMOVE_ERRORS } from "./types";
 
 export const createProject = (project, history) => async (dispatch) => {
   try {
@@ -11,4 +11,11 @@ export const createProject = (project, history) => async (dispatch) => {
       payload: error.response.data,
     });
   }
+};
+
+export const clearFormErrors = () => (dispatch) => {
+  dispatch({
+    type: REMOVE_ERRORS,
+    payload: {},
+  });
 };
