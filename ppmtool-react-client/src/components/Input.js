@@ -10,6 +10,7 @@ class Input extends Component {
       name,
       value,
       onInputChange,
+      disabled,
       errorMessage,
     } = this.props;
 
@@ -25,6 +26,7 @@ class Input extends Component {
           name={name}
           value={value}
           onChange={onInputChange}
+          disabled={disabled}
         />
         {errorMessage && <div className="invalid-feedback">{errorMessage}</div>}
       </div>
