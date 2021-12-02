@@ -8,10 +8,23 @@ import ProjectItem from "./project/ProjectItem";
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getProjects();
-    console.log(this.props);
+  }
+
+  renderProjectItems(projectList) {
+    if (projectList.length > 0) {
+      return projectList.map((project) => (
+        <ProjectItem key={project.id} project={project} />
+      ));
+    } else {
+      return (
+        <h6 className="text-center text-secondary">No project in your list!</h6>
+      );
+    }
   }
 
   render() {
+    const { projects } = this.props;
+
     return (
       <div className="projects">
         <div className="container">
@@ -22,9 +35,7 @@ class Dashboard extends Component {
               <CreateProjectButton />
               <br />
               <hr />
-              <ProjectItem />
-              <ProjectItem />
-              <ProjectItem />
+              {this.renderProjectItems(projects)}
             </div>
           </div>
         </div>
