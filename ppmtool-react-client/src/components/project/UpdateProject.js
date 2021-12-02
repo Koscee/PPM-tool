@@ -21,29 +21,37 @@ class UpdateProject extends Component {
 
   state = this.initialState;
 
+  extractStatePropertiesFromObject(object) {
+    let newObject = {};
+
+    /** filters data by mapping the state's object keys
+     * with another object excluding the errors property
+     */
+    for (const key in this.state) {
+      if (key !== "errors") {
+        newObject[key] = object[key];
+      }
+    }
+    return newObject;
+  }
+
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.getProject(id, this.props.history);
   }
 
-  // runs before render at ever rerender
-  static getDerivedStateFromProps(props, state) {
-    // this check if there is a project in d props and its id is not equal the id of the state
-    if (props.project.id && props.project.id !== state.id) {
-      let formData = {};
-
-      /** filters project data by mapping the state's object keys
-       * with project object excluding the errors object
-       */
-      for (const key in state) {
-        if (key !== "errors") {
-          formData[key] = props.project[key];
-        }
-      }
-      return formData;
+  // fixed issues caused using getStateDerivedFromProps
+  componentDidUpdate(prevProps) {
+    if (this.props.errors !== prevProps.errors) {
+      this.setState({ errors: this.props.errors });
     }
 
-    return null;
+    if (this.props.project !== prevProps.project) {
+      const formData = this.extractStatePropertiesFromObject(
+        this.props.project
+      );
+      this.setState(formData);
+    }
   }
 
   onInputChange = (e) => {
@@ -66,7 +74,11 @@ class UpdateProject extends Component {
   };
 
   onFormReset = () => {
-    this.setState(this.initialState);
+    this.props.clearFormErrors();
+    const initialProjectData = this.extractStatePropertiesFromObject(
+      this.props.project
+    );
+    this.setState(initialProjectData);
   };
 
   render() {
@@ -97,10 +109,12 @@ UpdateProject.propTypes = {
   clearFormErrors: PropTypes.func.isRequired,
   getProject: PropTypes.func.isRequired,
   project: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   project: state.project.project,
+  errors: state.errors,
 });
 
 export default connect(mapStateToProps, {

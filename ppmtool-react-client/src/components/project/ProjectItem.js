@@ -15,7 +15,7 @@ class ProjectItem extends Component {
 
             <div className="col-lg-6 col-md-6 col-8">
               <h3>{projectName}</h3>
-              <p>{description}t</p>
+              <p>{description}</p>
             </div>
 
             <div className="col-md-4 d-lg-block">
