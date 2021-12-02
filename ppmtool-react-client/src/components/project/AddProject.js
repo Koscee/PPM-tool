@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import classnames from "classnames";
 import { createProject, clearFormErrors } from "../../actions/projectActions";
+import Input from "../Input";
+import TextArea from "../TextArea";
 
 class AddProject extends Component {
   initialState = {
@@ -70,77 +71,47 @@ class AddProject extends Component {
               <hr />
 
               <form onSubmit={this.onFormSubmit} onReset={this.onFormReset}>
-                <div className="my-3">
-                  <input
-                    type="text"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.projectName,
-                    })}
-                    placeholder="Project Name"
-                    name="projectName"
-                    value={this.state.projectName}
-                    onChange={this.onInputChange}
-                  />
-                  {errors.projectName && (
-                    <div className="invalid-feedback">{errors.projectName}</div>
-                  )}
-                </div>
+                <Input
+                  type="text"
+                  placeholder="Project Name"
+                  name="projectName"
+                  value={this.state.projectName}
+                  onInputChange={this.onInputChange}
+                  errorMessage={errors.projectName}
+                />
 
-                <div className="my-3">
-                  <input
-                    type="text"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.projectIdentifier,
-                    })}
-                    placeholder="Unique Project ID"
-                    name="projectIdentifier"
-                    value={this.state.projectIdentifier}
-                    onChange={this.onInputChange}
-                  />
-                  {errors.projectIdentifier && (
-                    <div className="invalid-feedback">
-                      {errors.projectIdentifier}
-                    </div>
-                  )}
-                </div>
+                <Input
+                  type="text"
+                  placeholder="Unique Project ID"
+                  name="projectIdentifier"
+                  value={this.state.projectIdentifier}
+                  onInputChange={this.onInputChange}
+                  errorMessage={errors.projectIdentifier}
+                />
 
-                <div className="my-3">
-                  <h6 className="text-secondary">Start Date</h6>
-                  <input
-                    type="date"
-                    className="form-control form-control-lg"
-                    name="start_date"
-                    value={this.state.start_date}
-                    onChange={this.onInputChange}
-                  />
-                </div>
+                <Input
+                  label={<h6 className="text-secondary">Start Date</h6>}
+                  type="date"
+                  name="start_date"
+                  value={this.state.start_date}
+                  onInputChange={this.onInputChange}
+                />
 
-                <div className="my-3">
-                  <h6 className="text-secondary">Estimated End Date</h6>
-                  <input
-                    type="date"
-                    className="form-control form-control-lg"
-                    name="end_date"
-                    value={this.state.end_date}
-                    onChange={this.onInputChange}
-                  />
-                </div>
+                <Input
+                  label={<h6 className="text-secondary">Estimated End Date</h6>}
+                  type="date"
+                  name="end_date"
+                  value={this.state.end_date}
+                  onInputChange={this.onInputChange}
+                />
 
-                <div className="my-3">
-                  <textarea
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.description,
-                    })}
-                    style={{ height: "150px" }}
-                    placeholder="Project Description"
-                    name="description"
-                    value={this.state.description}
-                    onChange={this.onInputChange}
-                  ></textarea>
-                  {errors.description && (
-                    <div className="invalid-feedback">{errors.description}</div>
-                  )}
-                </div>
+                <TextArea
+                  placeholder="Project Description"
+                  name="description"
+                  value={this.state.description}
+                  onInputChange={this.onInputChange}
+                  errorMessage={errors.description}
+                />
 
                 <div className="row my-4">
                   <div className="col-6">
