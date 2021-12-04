@@ -7,6 +7,7 @@ import {
   getProject,
 } from "../../actions/projectActions";
 import Form from "../Form";
+import { successAlert } from "../alert";
 
 class UpdateProject extends Component {
   initialState = {
@@ -58,7 +59,7 @@ class UpdateProject extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onFormSubmit = (e) => {
+  onFormSubmit = async (e) => {
     e.preventDefault();
 
     const newProject = {
@@ -70,7 +71,8 @@ class UpdateProject extends Component {
       end_date: this.state.end_date,
     };
 
-    this.props.createProject(newProject, this.props.history);
+    await this.props.createProject(newProject, this.props.history);
+    successAlert("Project was updated successfuly!");
   };
 
   onFormReset = () => {

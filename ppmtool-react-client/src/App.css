@@ -18,7 +18,7 @@ a {
   color: #fff;
 }
 .btn-purple:hover {
-  background-color: #8078cb;
+  background-color: #8078cb !important;
   color: #fff;
 }
 

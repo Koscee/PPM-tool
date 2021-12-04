@@ -16,7 +16,7 @@ const dispatchAction = (dispatchFn, type, payload) => {
 
 export const createProject = (project, history) => async (dispatch) => {
   try {
-    await axios.post("http://localhost:8080/api/project", project);
+    await axios.post("/api/project", project);
     history.push("/dashboard");
     dispatchAction(dispatch, REMOVE_ERRORS, {});
   } catch (error) {
@@ -33,13 +33,13 @@ export const clearFormErrors = () => (dispatch) => {
 };
 
 export const getProjects = () => async (dispatch) => {
-  const res = await axios.get("http://localhost:8080/api/project/all");
+  const res = await axios.get("/api/project/all");
   dispatchAction(dispatch, GET_PROJECTS, res.data);
 };
 
 export const getProject = (id, history) => async (dispatch) => {
   try {
-    const res = await axios.get(`http://localhost:8080/api/project/${id}`);
+    const res = await axios.get(`/api/project/${id}`);
     dispatchAction(dispatch, GET_PROJECT, res.data);
   } catch (error) {
     history.push("/dashboard");
@@ -47,6 +47,6 @@ export const getProject = (id, history) => async (dispatch) => {
 };
 
 export const deleteProject = (id) => async (dispatch) => {
-  await axios.delete(`http://localhost:8080/api/project/${id}`);
+  await axios.delete(`/api/project/${id}`);
   dispatchAction(dispatch, DELETE_PROJECT, id);
 };
