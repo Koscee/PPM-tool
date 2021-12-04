@@ -16,10 +16,13 @@ a {
 .btn-purple {
   background-color: #8981d8;
   color: #fff;
+  transition: ease 0.2s;
 }
 .btn-purple:hover {
   background-color: #8078cb !important;
   color: #fff;
+  margin-bottom: 2px;
+  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
 
 .btn-reset {

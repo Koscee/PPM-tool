@@ -61,6 +61,7 @@ class Form extends Component {
           <div className="col-6">
             <input
               type="reset"
+              value="Reset"
               className="btn btn-reset bg-gradient w-100 py-2"
             />
           </div>
@@ -68,6 +69,7 @@ class Form extends Component {
           <div className="col-6 me-auto">
             <input
               type="submit"
+              value="Submit"
               className="btn btn-purple bg-gradient w-100 py-2"
             />
           </div>

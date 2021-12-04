@@ -6,7 +6,7 @@ const CreateProjectButton = () => {
     <React.Fragment>
       <Link
         to="/addProject"
-        className="btn btn-lg btn-purple bg-gradient py-1 fs-5 shadow"
+        className="btn btn-lg btn-purple bg-gradient py-1 fs-5 shadow-sm"
       >
         <i className="fa fa-plus-circle"> </i>
         &nbsp;New Project
