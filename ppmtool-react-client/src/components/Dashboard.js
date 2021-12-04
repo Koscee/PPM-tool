@@ -49,6 +49,8 @@ Dashboard.propTypes = {
   projects: PropTypes.array.isRequired,
 };
 
+// Maps state which exist in the redux store to this component's props
+// which makes this component rerender itself
 const mapStateToProps = (state) => ({
   projects: state.project.projects,
 });

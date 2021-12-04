@@ -85,6 +85,8 @@ AddProject.propTypes = {
   errors: PropTypes.object.isRequired,
 };
 
+// Maps state which exist in the redux store to this component's props
+// which makes this component rerender itself
 const mapStateToProps = (state) => ({
   errors: state.errors,
 });
