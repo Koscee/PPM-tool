@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { deleteProject } from "../../actions/projectActions";
-import { deleteAlert, successAlert } from "../alert";
+import { deleteAlert } from "../alert";
 
 class ProjectItem extends Component {
   onProjectItemDelete = async (id) => {
@@ -12,8 +12,7 @@ class ProjectItem extends Component {
     );
 
     if (willDelete) {
-      await this.props.deleteProject(id);
-      successAlert("Project was deleted successfuly!");
+      this.props.deleteProject(id);
     }
   };
 

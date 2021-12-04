@@ -1,4 +1,5 @@
 import axios from "axios";
+import { errorAlert, successAlert } from "../components/alert";
 import {
   DELETE_PROJECT,
   GET_ERRORS,
@@ -47,6 +48,11 @@ export const getProject = (id, history) => async (dispatch) => {
 };
 
 export const deleteProject = (id) => async (dispatch) => {
-  await axios.delete(`/api/project/${id}`);
-  dispatchAction(dispatch, DELETE_PROJECT, id);
+  try {
+    await axios.delete(`/api/project/${id}`);
+    dispatchAction(dispatch, DELETE_PROJECT, id);
+    successAlert("Project was deleted successfuly!");
+  } catch (error) {
+    errorAlert("Unable to delete project, please try again later.");
+  }
 };

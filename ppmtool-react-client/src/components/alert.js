@@ -15,3 +15,10 @@ export const successAlert = (message) =>
     buttons: false,
     timer: 3000,
   });
+
+export const errorAlert = (message) =>
+  swal(message, {
+    icon: "error",
+    buttons: false,
+    timer: 5000,
+  });
