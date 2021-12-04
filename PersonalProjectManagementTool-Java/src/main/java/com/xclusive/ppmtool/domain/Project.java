@@ -24,6 +24,10 @@ public class Project {
     @NotBlank(message = "Project description is required")
     private String description;
 
+    // to handle infinite recursion add @JsonIgnore to the child side of the relationship
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "project")
+    private Backlog backlog;
+
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date start_date;
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -77,6 +81,14 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Backlog getBacklog() {
+        return backlog;
+    }
+
+    public void setBacklog(Backlog backlog) {
+        this.backlog = backlog;
     }
 
     public Date getStart_date() {
