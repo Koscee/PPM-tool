@@ -32,8 +32,10 @@ public class ProjectTaskService {
         Integer BacklogSequence = backlog.getPTSequence();
 
         // increase PTSequence only when new projectTask is added and
-        // update the PTSequence (which is within the backlog)
+        // update and set the PTSequence (which is within the backlog)
         BacklogSequence++;
+
+        backlog.setPTSequence(BacklogSequence);
 
         // Add Sequence to Project Task
         String projectSequence = projectIdentifier+"-"+BacklogSequence;
@@ -41,9 +43,9 @@ public class ProjectTaskService {
         projectTask.setProjectIdentifier(projectIdentifier);
 
         // set an INITIAL priority when priority is null
-//        if (projectTask.getPriority() == 0 || projectTask.getPriority() == null) {
-//            projectTask.setPriority(Priority.LOW.getValue());
-//        }
+        if (projectTask.getPriority() == null) {  // need this check "projectTask.getPriority() == 0" to handle form data in the future
+            projectTask.setPriority(Priority.LOW.getValue());
+        }
 
         // set an INITIAL status when status is null
         if ("".equals(projectTask.getStatus()) || projectTask.getStatus() == null) {
