@@ -1,6 +1,7 @@
 package com.xclusive.ppmtool.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -26,6 +27,9 @@ public class Project {
 
     // to handle infinite recursion add @JsonIgnore to the child side of the relationship
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "project")
+    // prevents loading the backlog data (which might contain a huge list of projectTasks) in the project payload,
+    // improving server response performance. because the backlog wont be needed after requesting the project payload
+    @JsonIgnore
     private Backlog backlog;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
