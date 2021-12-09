@@ -2,9 +2,14 @@ package com.xclusive.ppmtool.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Check;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -23,6 +28,7 @@ public class ProjectTask {
 
     private String status;
 
+    @Range(min = 1, max = 3, message = "Priority value must be either 1, 2 or 3")
     private Integer priority;
 
     @JsonFormat(pattern = "yyyy-MM-dd")

@@ -99,7 +99,7 @@ public class ProjectTaskService {
 
     public ProjectTask updatePTByProjectSequence(ProjectTask updatedTask, String backlog_id, String pt_id) {
         // find existing project task
-        ProjectTask projectTask = projectTaskRepository.findByProjectSequence(updatedTask.getProjectSequence());
+        ProjectTask projectTask = findPTByProjectSequence(backlog_id, pt_id);
 
         // replace it with updated task
         projectTask = updatedTask;
