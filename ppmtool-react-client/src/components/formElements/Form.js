@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import FormActionButtons from './FormActionButtons';
 
-class Form extends Component {
-  render() {
-    const { onFormSubmit, onFormReset, children } = this.props;
+const Form = (props) => {
+  const { onFormSubmit, onFormReset, children } = props;
 
-    return (
-      <form onSubmit={onFormSubmit} onReset={onFormReset}>
-        {{ ...children }}
-        <FormActionButtons />
-      </form>
-    );
-  }
-}
+  return (
+    <form onSubmit={onFormSubmit} onReset={onFormReset}>
+      {{ ...children }}
+      <FormActionButtons />
+    </form>
+  );
+};
 
 export default Form;

@@ -19,6 +19,18 @@ class AddProjectTask extends Component {
 
   state = this.initialState;
 
+  // solves componentWillReceiveProps deprication warning
+  static getDerivedStateFromProps(props, state) {
+    if (props.errors !== state.errors) {
+      return {
+        ...state,
+        errors: props.errors,
+      };
+    }
+
+    return null;
+  }
+
   onInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -83,8 +95,13 @@ class AddProjectTask extends Component {
 AddProjectTask.propTypes = {
   addProjectTask: PropTypes.func.isRequired,
   clearFormErrors: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
-export default connect(null, { addProjectTask, clearFormErrors })(
+const mapStateToProps = (state) => ({
+  errors: state.errors,
+});
+
+export default connect(mapStateToProps, { addProjectTask, clearFormErrors })(
   AddProjectTask
 );

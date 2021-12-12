@@ -24,7 +24,7 @@ public class ProjectTask {
 
     private String status;
 
-    @Range(min = 1, max = 3, message = "Priority value must be either 1, 2 or 3")
+//    @Range(min = 1, max = 3, message = "Please select a priority")
     private Integer priority;
 
     @JsonFormat(pattern = "yyyy-MM-dd")

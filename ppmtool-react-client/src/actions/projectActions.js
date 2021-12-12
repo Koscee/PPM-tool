@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { successAlert } from '../components/alert';
+import dispatchAction from './dispatchHelper';
 import {
   DELETE_PROJECT,
   GET_ERRORS,
@@ -7,13 +8,6 @@ import {
   GET_PROJECTS,
   REMOVE_ERRORS,
 } from './types';
-
-const dispatchAction = (dispatchFn, type, payload) => {
-  dispatchFn({
-    type,
-    payload,
-  });
-};
 
 export const createProject =
   (requestAction, project, history) => async (dispatch) => {
