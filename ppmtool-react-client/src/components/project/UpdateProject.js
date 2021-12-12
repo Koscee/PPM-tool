@@ -1,22 +1,22 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
-  createProject,
   clearFormErrors,
+  createProject,
   getProject,
-} from "../../actions/projectActions";
-import Form from "../Form";
-import { successAlert } from "../alert";
+} from '../../actions/projectActions';
+import Form from '../formElements/Form';
+import ProjectFormFields from './ProjectFormFields';
 
 class UpdateProject extends Component {
   initialState = {
-    id: "",
-    projectName: "",
-    projectIdentifier: "",
-    description: "",
-    start_date: "",
-    end_date: "",
+    id: '',
+    projectName: '',
+    projectIdentifier: '',
+    description: '',
+    start_date: '',
+    end_date: '',
     errors: {},
   };
 
@@ -29,7 +29,7 @@ class UpdateProject extends Component {
      * with another object excluding the errors property
      */
     for (const key in this.state) {
-      if (key !== "errors") {
+      if (key !== 'errors') {
         newObject[key] = object[key];
       }
     }
@@ -59,10 +59,10 @@ class UpdateProject extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onFormSubmit = async (e) => {
+  onFormSubmit = (e) => {
     e.preventDefault();
 
-    const newProject = {
+    const projectData = {
       id: this.state.id,
       projectName: this.state.projectName,
       projectIdentifier: this.state.projectIdentifier,
@@ -71,8 +71,8 @@ class UpdateProject extends Component {
       end_date: this.state.end_date,
     };
 
-    await this.props.createProject(newProject, this.props.history);
-    successAlert("Project was updated successfuly!");
+    // the first param is used as a string to construct the success message
+    this.props.createProject('update', projectData, this.props.history);
   };
 
   onFormReset = () => {
@@ -92,12 +92,15 @@ class UpdateProject extends Component {
               <h5 className="display-5 text-center">Update Project</h5>
               <hr />
               <Form
-                isUpdateForm
                 onFormSubmit={this.onFormSubmit}
                 onFormReset={this.onFormReset}
-                fieldData={this.state}
-                onInputChange={this.onInputChange}
-              />
+              >
+                <ProjectFormFields
+                  isDisabled
+                  fieldData={this.state}
+                  onInputChange={this.onInputChange}
+                />
+              </Form>
             </div>
           </div>
         </div>

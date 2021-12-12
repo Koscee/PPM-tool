@@ -23,7 +23,7 @@ const Input = (props) => {
         })}
         placeholder={placeholder}
         name={name}
-        value={value}
+        value={value || ''}
         onChange={onInputChange}
         disabled={disabled}
       />

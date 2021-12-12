@@ -2,8 +2,8 @@ package com.xclusive.ppmtool.enums;
 
 public enum Status {
     TODO("TO_DO"),
-    IN_PROGRESS("IN PROGRESS"),
-    COMPLETE("COMPLETE");
+    IN_PROGRESS("IN_PROGRESS"),
+    DONE("DONE");
 
     private String action;
 

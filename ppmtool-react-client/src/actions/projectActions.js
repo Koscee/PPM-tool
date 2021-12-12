@@ -1,11 +1,12 @@
-import axios from "axios";
+import axios from 'axios';
+import { successAlert } from '../components/alert';
 import {
   DELETE_PROJECT,
   GET_ERRORS,
   GET_PROJECT,
   GET_PROJECTS,
   REMOVE_ERRORS,
-} from "./types";
+} from './types';
 
 const dispatchAction = (dispatchFn, type, payload) => {
   dispatchFn({
@@ -14,15 +15,17 @@ const dispatchAction = (dispatchFn, type, payload) => {
   });
 };
 
-export const createProject = (project, history) => async (dispatch) => {
-  try {
-    await axios.post("/api/project", project);
-    history.push("/dashboard");
-    dispatchAction(dispatch, REMOVE_ERRORS, {});
-  } catch (error) {
-    dispatchAction(dispatch, GET_ERRORS, error.response.data);
-  }
-};
+export const createProject =
+  (requestAction, project, history) => async (dispatch) => {
+    try {
+      await axios.post('/api/project', project);
+      history.push('/dashboard');
+      successAlert(`Project was ${requestAction}d successfuly!`);
+      dispatchAction(dispatch, REMOVE_ERRORS, {});
+    } catch (error) {
+      dispatchAction(dispatch, GET_ERRORS, error.response.data);
+    }
+  };
 
 /**
  * Sets the errors in the component props to be empty
@@ -33,7 +36,7 @@ export const clearFormErrors = () => (dispatch) => {
 };
 
 export const getProjects = () => async (dispatch) => {
-  const res = await axios.get("/api/project/all");
+  const res = await axios.get('/api/project/all');
   dispatchAction(dispatch, GET_PROJECTS, res.data);
 };
 
@@ -42,7 +45,7 @@ export const getProject = (id, history) => async (dispatch) => {
     const res = await axios.get(`/api/project/${id}`);
     dispatchAction(dispatch, GET_PROJECT, res.data);
   } catch (error) {
-    history.push("/dashboard");
+    history.push('/dashboard');
   }
 };
 

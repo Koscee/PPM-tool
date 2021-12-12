@@ -1,16 +1,17 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { createProject, clearFormErrors } from "../../actions/projectActions";
-import Form from "../Form";
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { clearFormErrors, createProject } from '../../actions/projectActions';
+import Form from '../formElements/Form';
+import ProjectFormFields from './ProjectFormFields';
 
 class AddProject extends Component {
   initialState = {
-    projectName: "",
-    projectIdentifier: "",
-    description: "",
-    start_date: "",
-    end_date: "",
+    projectName: '',
+    projectIdentifier: '',
+    description: '',
+    start_date: '',
+    end_date: '',
     errors: {},
   };
 
@@ -49,7 +50,8 @@ class AddProject extends Component {
       end_date: this.state.end_date,
     };
 
-    this.props.createProject(newProject, this.props.history);
+    // the first param is used as a string to construct the success message
+    this.props.createProject('create', newProject, this.props.history);
   };
 
   onFormReset = () => {
@@ -68,9 +70,12 @@ class AddProject extends Component {
               <Form
                 onFormSubmit={this.onFormSubmit}
                 onFormReset={this.onFormReset}
-                fieldData={this.state}
-                onInputChange={this.onInputChange}
-              />
+              >
+                <ProjectFormFields
+                  fieldData={this.state}
+                  onInputChange={this.onInputChange}
+                />
+              </Form>
             </div>
           </div>
         </div>
