@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import Input from "./Input";
-import TextArea from "./TextArea";
+import React, { Component } from 'react';
+import FormActionButtons from './FormActionButtons';
+import Input from './Input';
+import TextArea from './TextArea';
 
 class Form extends Component {
   render() {
@@ -57,23 +58,7 @@ class Form extends Component {
           errorMessage={fieldData.errors.description}
         />
 
-        <div className="row my-4">
-          <div className="col-6">
-            <input
-              type="reset"
-              value="Reset"
-              className="btn btn-reset bg-gradient w-100 py-2"
-            />
-          </div>
-
-          <div className="col-6 me-auto">
-            <input
-              type="submit"
-              value="Submit"
-              className="btn btn-purple bg-gradient w-100 py-2"
-            />
-          </div>
-        </div>
+        <FormActionButtons />
       </form>
     );
   }

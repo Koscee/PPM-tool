@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { deleteProject } from "../../actions/projectActions";
 import { deleteAlert, successAlert } from "../alert";
 
@@ -35,11 +35,11 @@ class ProjectItem extends Component {
 
             <div className="col-md-4 d-lg-block">
               <ul className="list-group">
-                <a href="#">
+                <Link to={`/projectBoard/${projectIdentifier}`}>
                   <li className="list-group-item board">
                     <i className="fa fa-tasks pe-1">&nbsp; Project Board</i>
                   </li>
-                </a>
+                </Link>
 
                 <Link to={`/updateProject/${projectIdentifier}`}>
                   <li className="list-group-item update">

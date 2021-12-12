@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { getProjects } from "../actions/projectActions";
-import CreateProjectButton from "./project/CreateProjectButton";
-import ProjectItem from "./project/ProjectItem";
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getProjects } from '../actions/projectActions';
+import CreateButton from './CreateButton';
+import ProjectItem from './project/ProjectItem';
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -32,7 +32,7 @@ class Dashboard extends Component {
             <div className="col-md-12">
               <h1 className="display-5 text-center">Projects</h1>
               <br />
-              <CreateProjectButton />
+              <CreateButton href="/addProject" text="New Project" />
               <br />
               <hr />
               {this.renderProjectItems(projects)}
