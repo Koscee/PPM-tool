@@ -71,7 +71,7 @@ class AddProjectTask extends Component {
                 to={`/projectBoard/${id}`}
                 className="btn-sm btn-outline-secondary border border-secondary"
               >
-                <i className="fa fa-arrow-left"></i>&nbsp; Project Board
+                <i className="bi bi-arrow-left-circle"></i>&nbsp; Project Board
               </Link>
               <h4 className="display-5 text-center">Add Project Task</h4>
               <p className="lead text-center">Project Name + Project Code</p>

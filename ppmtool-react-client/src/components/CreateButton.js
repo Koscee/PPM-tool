@@ -8,7 +8,7 @@ const CreateButton = ({ href, text }) => {
         to={href}
         className="btn btn-lg btn-purple bg-gradient py-1 fs-5 shadow-sm"
       >
-        <i className="fa fa-plus-circle"> </i>
+        <i className="bi bi-plus-circle pe-1"></i>
         &nbsp;{text}
       </Link>
     </React.Fragment>

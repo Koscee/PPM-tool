@@ -1,19 +1,19 @@
-import PropTypes from "prop-types";
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { deleteProject } from "../../actions/projectActions";
-import { deleteAlert, successAlert } from "../alert";
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { deleteProject } from '../../actions/projectActions';
+import { deleteAlert, successAlert } from '../alert';
 
 class ProjectItem extends Component {
   onProjectItemDelete = async (id) => {
     const willDelete = await deleteAlert(
-      "You are about to delete this project and all its related data!"
+      'You are about to delete this project and all its related data!'
     );
 
     if (willDelete) {
       await this.props.deleteProject(id);
-      successAlert("Project was deleted successfuly!");
+      successAlert('Project was deleted successfuly!');
     }
   };
 
@@ -36,22 +36,25 @@ class ProjectItem extends Component {
             <div className="col-md-4 d-lg-block">
               <ul className="list-group">
                 <Link to={`/projectBoard/${projectIdentifier}`}>
-                  <li className="list-group-item board">
-                    <i className="fa fa-tasks pe-1">&nbsp; Project Board</i>
+                  <li className="list-group-item rounded board">
+                    <i className="bi bi-kanban pe-2"></i>
+                    Project Board
                   </li>
                 </Link>
 
                 <Link to={`/updateProject/${projectIdentifier}`}>
-                  <li className="list-group-item update">
-                    <i className="fa fa-edit pe-1">&nbsp; Update Project</i>
+                  <li className="list-group-item rounded my-1 update">
+                    <i className="bi bi-pencil-square pe-2"></i>
+                    Update Project
                   </li>
                 </Link>
 
                 <li
-                  className="list-group-item delete"
+                  className="list-group-item rounded delete"
                   onClick={() => this.onProjectItemDelete(projectIdentifier)}
                 >
-                  <i className="fa fa-trash-alt pe-1">&nbsp; Delete Project</i>
+                  <i className="bi bi-trash-fill pe-2"></i>
+                  Delete Project
                 </li>
               </ul>
             </div>

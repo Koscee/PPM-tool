@@ -36,16 +36,18 @@ a {
 
 .project-item .card {
   border: 0.5px solid rgb(230, 230, 230);
-  border-left: 4px solid orange;
+  border-left: 4px solid #8078cb;
   /* box-shadow: 0px 1px 2px rgb(192, 192, 192); */
 }
 
 .project-item .card:hover {
   box-shadow: 0 0.2rem 1rem rgba(70, 70, 70, 0.15) !important;
+  background-color: rgb(250, 250, 250) !important;
 }
 
 .board {
   color: rgb(1, 104, 56);
+  border: 1.5px solid rgba(1, 104, 56, 0.4);
 }
 
 .board:hover {
@@ -55,7 +57,8 @@ a {
 }
 
 .update {
-  color: #026cb3;
+  color: rgb(2, 108, 179);
+  border: 1.5px solid rgba(2, 108, 179, 0.4);
 }
 
 .update:hover {
@@ -66,6 +69,16 @@ a {
 
 .delete {
   color: rgb(206, 8, 8);
+  border: 1.5px solid rgba(206, 8, 8, 0.4);
+}
+
+.red {
+  color: rgb(206, 8, 8);
+}
+
+.red:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }
 
 .delete:hover {
@@ -108,4 +121,15 @@ a {
 
 .form-control::placeholder {
   color: #bbb !important;
+}
+
+.bg-transparent {
+  background-color: transparent;
+}
+
+.task-card {
+  background-color: rgb(255, 255, 255);
+}
+.task-card:hover {
+  background-color: rgb(250, 250, 250) !important;
 }
