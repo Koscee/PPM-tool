@@ -44,30 +44,34 @@ a {
   box-shadow: 0 0.2rem 1rem rgba(70, 70, 70, 0.15) !important;
 }
 
-.fa.fa-tasks {
+.board {
   color: rgb(1, 104, 56);
 }
-.fa.fa-edit {
+
+.board:hover {
+  cursor: pointer;
+  background-color: rgb(7, 141, 78);
+  color: rgb(238, 255, 248);
+}
+
+.update {
   color: #026cb3;
 }
 
-.fa.fa-trash-alt {
+.update:hover {
+  cursor: pointer;
+  background-color: #0877c2;
+  color: rgb(238, 243, 255);
+}
+
+.delete {
   color: rgb(206, 8, 8);
 }
 
-.list-group-item.delete:hover {
+.delete:hover {
   cursor: pointer;
-  background-color: rgb(255, 192, 192);
-}
-
-.list-group-item.update:hover {
-  cursor: pointer;
-  background-color: rgb(209, 221, 247);
-}
-
-.list-group-item.board:hover {
-  cursor: pointer;
-  background-color: rgb(218, 250, 237);
+  background-color: rgb(218, 39, 39);
+  color: rgb(255, 234, 234);
 }
 
 .landing {
