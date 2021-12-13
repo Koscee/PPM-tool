@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { successAlert } from '../components/alert';
 import dispatchAction from './dispatchHelper';
-import { GET_ERRORS, REMOVE_ERRORS } from './types';
+import { GET_BACKLOG, GET_ERRORS, REMOVE_ERRORS } from './types';
 
 export const addProjectTask =
   (backlog_id, project_task, history) => async (dispatch) => {
@@ -14,3 +14,10 @@ export const addProjectTask =
       dispatchAction(dispatch, GET_ERRORS, error.response.data);
     }
   };
+
+export const getBacklog = (backlog_id) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/backlog/${backlog_id}`);
+    dispatchAction(dispatch, GET_BACKLOG, res.data);
+  } catch (error) {}
+};
