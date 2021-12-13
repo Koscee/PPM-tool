@@ -13,6 +13,7 @@ class ProjectBoard extends Component {
 
   render() {
     const { id } = this.props.match.params;
+    const { project_tasks } = this.props.backlog;
 
     return (
       <div className="container">
@@ -21,7 +22,7 @@ class ProjectBoard extends Component {
         <br />
 
         <hr />
-        <Backlog />
+        <Backlog projectTasks={project_tasks} />
       </div>
     );
   }
@@ -29,6 +30,7 @@ class ProjectBoard extends Component {
 
 ProjectBoard.propTypes = {
   getBacklog: PropTypes.func.isRequired,
+  backlog: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({

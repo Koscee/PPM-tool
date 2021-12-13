@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom';
 
 class ProjectTask extends Component {
   render() {
+    const { projectSequence, summary, priority, acceptanceCriteria } =
+      this.props.projectTask;
     return (
       <div className="card mb-2 bg-light">
         <div className="card-header text-primary">
-          ID: projectSequence -- Priority: priorityString
+          ID: {projectSequence} -- Priority: {priority}
         </div>
         <div className="card-body bg-light">
-          <h5 className="card-title">project_task.summary</h5>
-          <p className="card-text text-truncate ">
-            project_task.acceptanceCriteria
-          </p>
+          <h5 className="card-title">{summary}</h5>
+          <p className="card-text text-truncate ">{acceptanceCriteria}</p>
           <Link to="" className="btn btn-purple">
             View / Update
           </Link>
