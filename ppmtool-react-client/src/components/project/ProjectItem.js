@@ -3,25 +3,23 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { deleteProject } from '../../actions/projectActions';
-import { deleteAlert, successAlert } from '../alert';
 
 class ProjectItem extends Component {
   onProjectItemDelete = async (id) => {
-    const willDelete = await deleteAlert(
-      'You are about to delete this project and all its related data!'
-    );
-
-    if (willDelete) {
-      await this.props.deleteProject(id);
-      successAlert('Project was deleted successfuly!');
-    }
+    this.props.deleteProject(id);
   };
 
   render() {
     const { projectName, projectIdentifier, description } = this.props.project;
 
     return (
-      <div className="container project-item">
+      <div
+        className="container project-item"
+        role="button"
+        onClick={() =>
+          this.props.history.push(`/projectBoard/${projectIdentifier}`)
+        }
+      >
         <div className="card card-body mb-3 shadow-sm">
           <div className="row">
             <div className="col-2">

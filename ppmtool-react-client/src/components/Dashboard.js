@@ -13,7 +13,11 @@ class Dashboard extends Component {
   renderProjectItems(projectList) {
     if (projectList.length > 0) {
       return projectList.map((project) => (
-        <ProjectItem key={project.id} project={project} />
+        <ProjectItem
+          key={project.id}
+          project={project}
+          history={this.props.history}
+        />
       ));
     } else {
       return (

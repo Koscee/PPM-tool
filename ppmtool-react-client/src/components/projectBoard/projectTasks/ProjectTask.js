@@ -1,8 +1,15 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { deleteProjectTask } from '../../../actions/backlogActions';
 import taskPriority from './projectTaskPriority';
 
 class ProjectTask extends Component {
+  onProjectTaskDelete = (backlog_id, pt_id) => {
+    this.props.deleteProjectTask(backlog_id, pt_id);
+  };
+
   render() {
     const {
       projectIdentifier,
@@ -48,6 +55,9 @@ class ProjectTask extends Component {
               data-bs-placement="auto"
               data-bs-toggle="tooltip"
               title="Delete"
+              onClick={() =>
+                this.onProjectTaskDelete(projectIdentifier, projectSequence)
+              }
             >
               <i className="bi bi-trash fs-6 red"></i>
             </span>
@@ -58,4 +68,8 @@ class ProjectTask extends Component {
   }
 }
 
-export default ProjectTask;
+ProjectTask.propTypes = {
+  deleteProjectTask: PropTypes.func.isRequired,
+};
+
+export default connect(null, { deleteProjectTask })(ProjectTask);

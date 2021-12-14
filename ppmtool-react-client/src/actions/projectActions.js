@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { successAlert } from '../components/alert';
+import { deleteAlert, successAlert } from '../components/alert';
 import dispatchAction from './dispatchHelper';
 import {
   DELETE_PROJECT,
@@ -44,6 +44,13 @@ export const getProject = (id, history) => async (dispatch) => {
 };
 
 export const deleteProject = (id) => async (dispatch) => {
-  await axios.delete(`/api/project/${id}`);
-  dispatchAction(dispatch, DELETE_PROJECT, id);
+  const willDelete = await deleteAlert(
+    'You are about to delete this project and all its related data!'
+  );
+
+  if (willDelete) {
+    const res = await axios.delete(`/api/project/${id}`);
+    dispatchAction(dispatch, DELETE_PROJECT, id);
+    successAlert(res.data);
+  }
 };

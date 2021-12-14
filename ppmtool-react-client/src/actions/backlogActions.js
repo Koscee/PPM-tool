@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { successAlert } from '../components/alert';
+import { deleteAlert, successAlert } from '../components/alert';
 import dispatchAction from './dispatchHelper';
 import {
+  DELETE_PROJECT_TASK,
   GET_BACKLOG,
   GET_ERRORS,
   GET_PROJECT_TASK,
@@ -44,9 +45,21 @@ export const updateProjectTask =
     try {
       await axios.patch(`/api/backlog/${backlog_id}/${pt_id}`, project_task);
       history.push(`/projectBoard/${backlog_id}`);
-      successAlert('Task was updated sucessfully!');
+      successAlert(`Task "${pt_id}" was updated sucessfully!`);
       dispatchAction(dispatch, REMOVE_ERRORS, {});
     } catch (error) {
       dispatchAction(dispatch, GET_ERRORS, error.response.data);
     }
   };
+
+export const deleteProjectTask = (backlog_id, pt_id) => async (dispatch) => {
+  const willDelete = await deleteAlert(
+    `You are about to delete task "${pt_id}", this action cannot be reverted!`
+  );
+
+  if (willDelete) {
+    const res = await axios.delete(`/api/backlog/${backlog_id}/${pt_id}`);
+    dispatchAction(dispatch, DELETE_PROJECT_TASK, pt_id);
+    successAlert(res.data);
+  }
+};

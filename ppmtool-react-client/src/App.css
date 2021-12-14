@@ -19,10 +19,10 @@ a {
   transition: ease 0.2s;
 }
 .btn-purple:hover {
-  background-color: #8078cb !important;
-  color: #fff;
-  margin-bottom: 2px;
-  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.15) !important;
+  background-color: transparent !important;
+  color: #8078cb;
+  border: 2px solid rgba(128, 120, 203, 0.8);
+  box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.1) !important;
 }
 
 .btn-reset {
