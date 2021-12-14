@@ -4,7 +4,7 @@ import Select from '../../formElements/Select';
 import TextArea from '../../formElements/TextArea';
 
 const ProjectTaskFormFields = (props) => {
-  const { isDisabled, fieldData, onInputChange } = props;
+  const { fieldData, onInputChange } = props;
 
   return (
     <>

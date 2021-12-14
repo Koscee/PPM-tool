@@ -13,7 +13,7 @@ const TextArea = (props) => {
         style={{ height: '150px' }}
         placeholder={placeholder}
         name={name}
-        value={value}
+        value={value || ''}
         onChange={onInputChange}
       ></textarea>
       {errorMessage && <div className="invalid-feedback">{errorMessage}</div>}

@@ -54,7 +54,7 @@ class ProjectBoard extends Component {
     return (
       <div className="container">
         <br />
-        <CreateButton href={`/addProjectTask/${id}`} text="New Project Task" />
+        <CreateButton href={`/addProjectTask/${id}`} text="New Task" />
         <br />
 
         <hr />

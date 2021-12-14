@@ -4,8 +4,13 @@ import taskPriority from './projectTaskPriority';
 
 class ProjectTask extends Component {
   render() {
-    const { projectSequence, summary, priority, acceptanceCriteria } =
-      this.props.projectTask;
+    const {
+      projectIdentifier,
+      projectSequence,
+      summary,
+      priority,
+      acceptanceCriteria,
+    } = this.props.projectTask;
 
     const { styleClass: priorityClass, text: priorityText } =
       taskPriority[`${priority}`];
@@ -26,20 +31,27 @@ class ProjectTask extends Component {
         </div>
 
         <div className="card-body">
-          <h5 className="card-title fs-6">{summary}</h5>
-          <p className="text-muted text-truncate ">{acceptanceCriteria}</p>
-          <Link to="" className="btn btn-sm btn-outline-secondary">
-            View / Update
-          </Link>
-          <span
-            className="ms-4 d-inline-block"
-            data-bs-placement="auto"
-            data-bs-toggle="tooltip"
-            title="Delete"
-          >
-            <i className="bi bi-trash-fill fs-5 red"></i>
-          </span>
-          {/* <button className="btn btn-sm btn-danger ms-4">Delete</button> */}
+          <h5 className="card-title fs-5">{summary}</h5>
+          <p className="text-muted text-truncate h6">{acceptanceCriteria}</p>
+          <div className="text-end">
+            <Link
+              to={`/updateProjectTask/${projectIdentifier}/${projectSequence}`}
+              className="d-inline-block"
+              data-bs-placement="auto"
+              data-bs-toggle="tooltip"
+              title="View / Update"
+            >
+              <i className="bi bi-eye-fill fs-6 text-secondary"></i>
+            </Link>
+            <span
+              className="ms-3 d-inline-block"
+              data-bs-placement="auto"
+              data-bs-toggle="tooltip"
+              title="Delete"
+            >
+              <i className="bi bi-trash fs-6 red"></i>
+            </span>
+          </div>
         </div>
       </div>
     );

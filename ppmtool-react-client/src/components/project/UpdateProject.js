@@ -7,6 +7,7 @@ import {
   getProject,
 } from '../../actions/projectActions';
 import Form from '../formElements/Form';
+import extractStatePropertiesFromObject from '../helper/filterStateProperties';
 import ProjectFormFields from './ProjectFormFields';
 
 class UpdateProject extends Component {
@@ -22,20 +23,6 @@ class UpdateProject extends Component {
 
   state = this.initialState;
 
-  extractStatePropertiesFromObject(object) {
-    let newObject = {};
-
-    /** filters data by mapping the state's object keys
-     * with another object excluding the errors property
-     */
-    for (const key in this.state) {
-      if (key !== 'errors') {
-        newObject[key] = object[key];
-      }
-    }
-    return newObject;
-  }
-
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.getProject(id, this.props.history);
@@ -48,7 +35,8 @@ class UpdateProject extends Component {
     }
 
     if (this.props.project !== prevProps.project) {
-      const formData = this.extractStatePropertiesFromObject(
+      const formData = extractStatePropertiesFromObject(
+        this.state,
         this.props.project
       );
       this.setState(formData);
@@ -61,23 +49,18 @@ class UpdateProject extends Component {
 
   onFormSubmit = (e) => {
     e.preventDefault();
-
-    const projectData = {
-      id: this.state.id,
-      projectName: this.state.projectName,
-      projectIdentifier: this.state.projectIdentifier,
-      description: this.state.description,
-      start_date: this.state.start_date,
-      end_date: this.state.end_date,
-    };
+    const projectData = extractStatePropertiesFromObject(this.state);
 
     // the first param is used as a string to construct the success message
     this.props.createProject('update', projectData, this.props.history);
   };
 
-  onFormReset = () => {
+  onFormReset = (e) => {
+    e.preventDefault();
     this.props.clearFormErrors();
-    const initialProjectData = this.extractStatePropertiesFromObject(
+
+    const initialProjectData = extractStatePropertiesFromObject(
+      this.state,
       this.props.project
     );
     this.setState(initialProjectData);

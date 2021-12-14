@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { addProjectTask } from '../../../actions/backlogActions';
 import { clearFormErrors } from '../../../actions/projectActions';
 import Form from '../../formElements/Form';
+import extractStatePropertiesFromObject from '../../helper/filterStateProperties';
 import ProjectTaskFormFields from './ProjectTaskFormFields';
 class AddProjectTask extends Component {
   initialState = {
@@ -37,15 +38,7 @@ class AddProjectTask extends Component {
 
   onFormSubmit = (e) => {
     e.preventDefault();
-
-    const newProjectTask = {
-      summary: this.state.summary,
-      acceptanceCriteria: this.state.acceptanceCriteria,
-      status: this.state.status,
-      priority: this.state.priority,
-      dueDate: this.state.dueDate,
-      projectIdentifier: this.state.projectIdentifier,
-    };
+    const newProjectTask = extractStatePropertiesFromObject(this.state);
 
     this.props.addProjectTask(
       this.state.projectIdentifier,

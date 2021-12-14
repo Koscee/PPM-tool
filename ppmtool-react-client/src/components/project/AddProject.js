@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { clearFormErrors, createProject } from '../../actions/projectActions';
 import Form from '../formElements/Form';
+import extractStatePropertiesFromObject from '../helper/filterStateProperties';
 import ProjectFormFields from './ProjectFormFields';
 
 class AddProject extends Component {
@@ -42,13 +43,7 @@ class AddProject extends Component {
 
   onFormSubmit = (e) => {
     e.preventDefault();
-    const newProject = {
-      projectName: this.state.projectName,
-      projectIdentifier: this.state.projectIdentifier,
-      description: this.state.description,
-      start_date: this.state.start_date,
-      end_date: this.state.end_date,
-    };
+    const newProject = extractStatePropertiesFromObject(this.state);
 
     // the first param is used as a string to construct the success message
     this.props.createProject('create', newProject, this.props.history);

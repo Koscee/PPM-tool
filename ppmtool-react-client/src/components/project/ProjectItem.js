@@ -29,7 +29,7 @@ class ProjectItem extends Component {
             </div>
 
             <div className="col-lg-6 col-md-6 col-8">
-              <h3>{projectName}</h3>
+              <h4>{projectName}</h4>
               <p>{description}</p>
             </div>
 
