@@ -51,7 +51,8 @@ public class ProjectTaskService {
             projectTask.setProjectIdentifier(projectIdentifier);
 
             // set an INITIAL priority when priority is null
-            if (projectTask.getPriority() == 0 || projectTask.getPriority() == null) {  // need this check "projectTask.getPriority() == 0" to handle form select priority
+            // need this check "projectTask.getPriority() == 0" to handle form input selected priority
+            if (projectTask.getPriority() == 0 || projectTask.getPriority() == null) {
                 projectTask.setPriority(Priority.LOW.getValue());
             }
 
