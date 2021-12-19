@@ -31,30 +31,39 @@ public class ProjectService {
         project.setProjectIdentifier(this.changeStringCase(project.getProjectIdentifier()));
 
         try {
-            User user = userRepository.findByUsername(username);
-
-            project.setUser(user);
-            project.setProjectLeader(user.getUsername());
-
             /* only create a new backlog when saving new project.
              * backlog shouldn't be created when updating a project
              */
             if (project.getId() == null) {
+                User user = userRepository.findByUsername(username);
+                project.setUser(user);
+                project.setProjectLeader(user.getUsername());
+
                 Backlog backlog = new Backlog();
                 project.setBacklog(backlog);
                 backlog.setProject(project);
                 backlog.setProjectIdentifier(project.getProjectIdentifier());
             }
 
+            // for a project that already exists, it has an owner
             if (project.getId() != null){
-                project.setBacklog(backlogRepository.findByProjectIdentifier(project.getProjectIdentifier()));
+                Project existingProject = findProjectByIdentifier(project.getProjectIdentifier(), username);
+                if (!existingProject.getId().equals(project.getId())) {
+                    throw new ProjectIdException("The primary key id you provided is invalid for the Project Identifier");
+                }
+                project.setUser(existingProject.getUser());
+                project.setProjectLeader(existingProject.getProjectLeader());
+                project.setBacklog(existingProject.getBacklog());
             }
 
             return projectRepository.save(project);
+        }catch (ProjectIdException | ProjectNotFoundException e) {
+            throw e;
         }catch (Exception e) {
             throw new ProjectIdException("Project ID '"+ project.getProjectIdentifier() +"' already exist");
         }
     }
+
 
     public Project findProjectByIdentifier(String projectId, String username) {
         projectId = this.changeStringCase(projectId);
