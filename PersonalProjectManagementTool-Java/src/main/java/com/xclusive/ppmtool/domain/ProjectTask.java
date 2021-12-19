@@ -40,6 +40,7 @@ public class ProjectTask {
     private String projectIdentifier;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
+    @Column(updatable = false)
     private Date created_At;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
