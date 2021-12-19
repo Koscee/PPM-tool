@@ -9,6 +9,7 @@ const Input = (props) => {
     name,
     value,
     onInputChange,
+    required,
     disabled,
     errorMessage,
   } = props;
@@ -25,6 +26,7 @@ const Input = (props) => {
         name={name}
         value={value || ''}
         onChange={onInputChange}
+        required={required}
         disabled={disabled}
       />
       {errorMessage && <div className="invalid-feedback">{errorMessage}</div>}

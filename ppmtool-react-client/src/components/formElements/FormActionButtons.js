@@ -15,7 +15,7 @@ const FormActionButtons = () => {
         <input
           type="submit"
           value="Submit"
-          className="btn btn-purple bg-gradient w-100 py-2"
+          className="btn btn-purple-main bg-gradient w-100 py-2"
         />
       </div>
     </div>

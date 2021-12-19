@@ -13,16 +13,30 @@ a {
   background-color: #6a61c0;
 }
 
-.btn-purple {
-  background-color: #8981d8;
+.btn-purple-outline {
+  background-color: transparent !important;
+  color: #8078cb;
+  border: 1.5px solid rgba(128, 120, 203, 0.8);
+}
+
+.btn-purple,
+.btn-purple-main,
+.btn-purple-outline:hover {
+  background-color: #8981d8 !important;
   color: #fff;
   transition: ease 0.2s;
 }
+
 .btn-purple:hover {
   background-color: transparent !important;
   color: #8078cb;
   border: 2px solid rgba(128, 120, 203, 0.8);
   box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.1) !important;
+}
+
+.btn-purple-main:hover {
+  background-color: #736bbb !important;
+  color: #fff;
 }
 
 .btn-reset {

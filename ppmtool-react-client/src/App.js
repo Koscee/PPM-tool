@@ -5,11 +5,14 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import Dashboard from './components/Dashboard';
 import Header from './components/layout/Header';
+import Landing from './components/layout/Landing';
 import AddProject from './components/project/AddProject';
 import UpdateProject from './components/project/UpdateProject';
 import ProjectBoard from './components/projectBoard/ProjectBoard';
 import AddProjectTask from './components/projectBoard/projectTasks/AddProjectTask';
 import UpdateProjectTask from './components/projectBoard/projectTasks/UpdateProjectTask';
+import Login from './components/user/Login';
+import Register from './components/user/Register';
 import store from './store';
 
 class App extends Component {
@@ -19,6 +22,13 @@ class App extends Component {
         <Router>
           <div className="App">
             <Header />
+
+            {/* Public Routes */}
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+
+            {/* Private Routes */}
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/addProject" component={AddProject} />
             <Route exact path="/updateProject/:id" component={UpdateProject} />
