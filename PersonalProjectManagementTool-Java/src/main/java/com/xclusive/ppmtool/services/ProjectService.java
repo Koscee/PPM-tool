@@ -4,6 +4,7 @@ import com.xclusive.ppmtool.domain.Backlog;
 import com.xclusive.ppmtool.domain.Project;
 import com.xclusive.ppmtool.domain.User;
 import com.xclusive.ppmtool.exceptions.ProjectIdException;
+import com.xclusive.ppmtool.exceptions.ProjectNotFoundException;
 import com.xclusive.ppmtool.repositories.BacklogRepository;
 import com.xclusive.ppmtool.repositories.ProjectRepository;
 import com.xclusive.ppmtool.repositories.UserRepository;
@@ -55,7 +56,7 @@ public class ProjectService {
         }
     }
 
-    public Project findProjectByIdentifier(String projectId) {
+    public Project findProjectByIdentifier(String projectId, String username) {
         projectId = this.changeStringCase(projectId);
 
         Project project = projectRepository.findByProjectIdentifier(projectId);
@@ -64,22 +65,20 @@ public class ProjectService {
             throw new ProjectIdException("Project ID '"+ projectId +"' does not exist");
         }
 
+        // Only return the project if the user looking for it is the owner
+        if (!project.getProjectLeader().equals(username)) {
+            throw new ProjectNotFoundException("Project not found in your account");
+        }
+
         return project;
     }
 
-    public Iterable<Project> findAllProjects() {
-        return projectRepository.findAll();
+    public Iterable<Project> findAllProjects(String username) {
+        return projectRepository.findAllByProjectLeader(username);
     }
 
-    public void deleteProjectByIdentifier(String projectId) {
-        projectId = this.changeStringCase(projectId);
+    public void deleteProjectByIdentifier(String projectId, String username) {
 
-        Project project = projectRepository.findByProjectIdentifier(projectId);
-
-        if (project == null) {
-            throw new ProjectIdException("Cannot delete Project with ID '" + projectId + "'. This project does not exist");
-        }
-
-        projectRepository.delete(project);
+        projectRepository.delete(findProjectByIdentifier(projectId, username));
     }
 }
