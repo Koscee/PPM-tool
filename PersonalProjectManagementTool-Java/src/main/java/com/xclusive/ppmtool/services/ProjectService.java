@@ -2,9 +2,11 @@ package com.xclusive.ppmtool.services;
 
 import com.xclusive.ppmtool.domain.Backlog;
 import com.xclusive.ppmtool.domain.Project;
+import com.xclusive.ppmtool.domain.User;
 import com.xclusive.ppmtool.exceptions.ProjectIdException;
 import com.xclusive.ppmtool.repositories.BacklogRepository;
 import com.xclusive.ppmtool.repositories.ProjectRepository;
+import com.xclusive.ppmtool.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,15 +18,23 @@ public class ProjectService {
     @Autowired
     private BacklogRepository backlogRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     // helper function: converts a string to upper case
     public String changeStringCase (String s){
         return s.toUpperCase();
     }
 
-    public Project saveOrUpdateProject(Project project){
+    public Project saveOrUpdateProject(Project project, String username){
         project.setProjectIdentifier(this.changeStringCase(project.getProjectIdentifier()));
 
         try {
+            User user = userRepository.findByUsername(username);
+
+            project.setUser(user);
+            project.setProjectLeader(user.getUsername());
+
             /* only create a new backlog when saving new project.
              * backlog shouldn't be created when updating a project
              */
