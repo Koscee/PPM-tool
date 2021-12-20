@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FormActionButtons = ({ resetButton }) => {
+const FormActionButtons = ({ submitBtnTxt, resetButton }) => {
   return (
     <div className="row my-4">
       {resetButton && (
@@ -16,7 +16,7 @@ const FormActionButtons = ({ resetButton }) => {
       <div className={resetButton ? 'col-6 me-auto' : ''}>
         <input
           type="submit"
-          value="Submit"
+          value={submitBtnTxt || 'Submit'}
           className="btn btn-purple-main bg-gradient w-100 py-2"
         />
       </div>

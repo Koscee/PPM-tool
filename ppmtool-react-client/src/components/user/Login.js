@@ -43,7 +43,7 @@ export class Login extends Component {
           <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-5 text-center mb-4">Log In</h1>
-              <Form onFormSubmit={this.onFormSubmit}>
+              <Form onFormSubmit={this.onFormSubmit} submitBtnTxt="Login">
                 <LoginFormFields
                   fieldData={this.state}
                   onInputChange={this.onInputChange}

@@ -42,4 +42,6 @@ export const logout = () => (dispatch) => {
   localStorage.removeItem('jwtToken');
   setJwtToken(false);
   dispatchAction(dispatch, SET_CURRENT_USER, {});
+
+  window.location.href = '/';
 };

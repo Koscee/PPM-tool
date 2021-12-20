@@ -49,6 +49,7 @@ export class Register extends Component {
               <h1 className="display-5 text-center">Sign Up</h1>
               <p className="lead text-center mb-4">Create your Account</p>
               <Form
+                submitBtnTxt="Sign up"
                 onFormSubmit={this.onFormSubmit}
                 onFormReset={this.onFormReset}
               >

@@ -2,12 +2,15 @@ import React from 'react';
 import FormActionButtons from './FormActionButtons';
 
 const Form = (props) => {
-  const { onFormSubmit, onFormReset, children } = props;
+  const { onFormSubmit, onFormReset, submitBtnTxt, children } = props;
 
   return (
     <form onSubmit={onFormSubmit} onReset={onFormReset}>
       {{ ...children }}
-      <FormActionButtons resetButton={onFormReset ? true : false} />
+      <FormActionButtons
+        submitBtnTxt={submitBtnTxt}
+        resetButton={onFormReset ? true : false}
+      />
     </form>
   );
 };

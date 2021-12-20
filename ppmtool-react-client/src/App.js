@@ -32,7 +32,6 @@ if (jwtToken) {
   if (decodedToken.exp < currentTime) {
     // handle logout
     store.dispatch(logout());
-    window.location.href = '/';
   }
 }
 class App extends Component {
