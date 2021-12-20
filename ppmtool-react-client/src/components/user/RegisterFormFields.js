@@ -16,7 +16,7 @@ const RegisterFormFields = (props) => {
       />
 
       <Input
-        type="email"
+        type="text"
         placeholder="Email Address"
         name="username"
         value={fieldData.username}

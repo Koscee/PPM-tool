@@ -7,7 +7,7 @@ const Form = (props) => {
   return (
     <form onSubmit={onFormSubmit} onReset={onFormReset}>
       {{ ...children }}
-      <FormActionButtons />
+      <FormActionButtons resetButton={onFormReset ? true : false} />
     </form>
   );
 };
