@@ -2,8 +2,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import jwtDecode from 'jwt-decode';
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import dispatchAction from './actions/dispatchHelper';
+import { logout } from './actions/securityActions';
 import { SET_CURRENT_USER } from './actions/types';
 import './App.css';
 import Dashboard from './components/Dashboard';
@@ -30,6 +31,8 @@ if (jwtToken) {
 
   if (decodedToken.exp < currentTime) {
     // handle logout
+    store.dispatch(logout());
+    window.location.href = '/';
   }
 }
 class App extends Component {
@@ -39,27 +42,32 @@ class App extends Component {
         <Router>
           <div className="App">
             <Header />
+            <Switch>
+              {/* Public Routes */}
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
 
-            {/* Public Routes */}
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
-
-            {/* Private Routes */}
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/addProject" component={AddProject} />
-            <Route exact path="/updateProject/:id" component={UpdateProject} />
-            <Route exact path="/projectBoard/:id" component={ProjectBoard} />
-            <Route
-              exact
-              path="/addProjectTask/:id"
-              component={AddProjectTask}
-            />
-            <Route
-              exact
-              path="/updateProjectTask/:backlog_id/:pt_id"
-              component={UpdateProjectTask}
-            />
+              {/* Private Routes */}
+              <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/addProject" component={AddProject} />
+              <Route
+                exact
+                path="/updateProject/:id"
+                component={UpdateProject}
+              />
+              <Route exact path="/projectBoard/:id" component={ProjectBoard} />
+              <Route
+                exact
+                path="/addProjectTask/:id"
+                component={AddProjectTask}
+              />
+              <Route
+                exact
+                path="/updateProjectTask/:backlog_id/:pt_id"
+                component={UpdateProjectTask}
+              />
+            </Switch>
           </div>
         </Router>
       </Provider>

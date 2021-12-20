@@ -37,3 +37,9 @@ export const login = (loginRequest) => async (dispatch) => {
     dispatchAction(dispatch, GET_ERRORS, error.response.data);
   }
 };
+
+export const logout = () => (dispatch) => {
+  localStorage.removeItem('jwtToken');
+  setJwtToken(false);
+  dispatchAction(dispatch, SET_CURRENT_USER, {});
+};
