@@ -18,6 +18,12 @@ export class Register extends Component {
 
   state = this.initialState;
 
+  componentDidMount() {
+    if (this.props.security.validToken) {
+      this.props.history.push('/dashboard');
+    }
+  }
+
   componentDidUpdate(prevProps) {
     if (this.props.errors !== prevProps.errors) {
       this.setState({ errors: this.props.errors });
@@ -70,10 +76,12 @@ Register.propTypes = {
   createNewUser: PropTypes.func.isRequired,
   clearFormErrors: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
+  security: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   errors: state.errors,
+  security: state.security,
 });
 
 export default connect(mapStateToProps, { createNewUser, clearFormErrors })(

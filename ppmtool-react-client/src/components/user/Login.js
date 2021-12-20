@@ -15,6 +15,12 @@ export class Login extends Component {
 
   state = this.initialState;
 
+  componentDidMount() {
+    if (this.props.security.validToken) {
+      this.props.history.push('/dashboard');
+    }
+  }
+
   componentDidUpdate(prevProps) {
     if (this.props.errors !== prevProps.errors) {
       this.setState({ errors: this.props.errors });
