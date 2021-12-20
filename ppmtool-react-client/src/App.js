@@ -18,6 +18,7 @@ import UpdateProjectTask from './components/projectBoard/projectTasks/UpdateProj
 import Login from './components/user/Login';
 import Register from './components/user/Register';
 import store from './store';
+import SecuredRoute from './utils/SecuredRoute';
 import setJwtToken from './utils/setJwtToken';
 
 const jwtToken = localStorage.getItem('jwtToken');
@@ -41,27 +42,32 @@ class App extends Component {
         <Router>
           <div className="App">
             <Header />
-            <Switch>
-              {/* Public Routes */}
-              <Route exact path="/" component={Landing} />
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
 
-              {/* Private Routes */}
-              <Route exact path="/dashboard" component={Dashboard} />
-              <Route exact path="/addProject" component={AddProject} />
-              <Route
+            {/* Public Routes */}
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+
+            {/* Private Routes */}
+            <Switch>
+              <SecuredRoute exact path="/dashboard" component={Dashboard} />
+              <SecuredRoute exact path="/addProject" component={AddProject} />
+              <SecuredRoute
                 exact
                 path="/updateProject/:id"
                 component={UpdateProject}
               />
-              <Route exact path="/projectBoard/:id" component={ProjectBoard} />
-              <Route
+              <SecuredRoute
+                exact
+                path="/projectBoard/:id"
+                component={ProjectBoard}
+              />
+              <SecuredRoute
                 exact
                 path="/addProjectTask/:id"
                 component={AddProjectTask}
               />
-              <Route
+              <SecuredRoute
                 exact
                 path="/updateProjectTask/:backlog_id/:pt_id"
                 component={UpdateProjectTask}
