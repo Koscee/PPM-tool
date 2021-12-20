@@ -22,7 +22,7 @@ class ProjectBoard extends Component {
   renderBoardContents = (errors, project_tasks) => {
     const displayErrorMssg = () => (
       <div className="alert alert-danger text-center h4 fw-normal" role="alert">
-        {errors.projectNotFound}
+        {errors.projectNotFound || errors.projectIdentifier}
       </div>
     );
 
@@ -36,7 +36,7 @@ class ProjectBoard extends Component {
     );
 
     if (project_tasks.length < 1) {
-      return errors.projectNotFound
+      return errors.projectNotFound || errors.projectIdentifier
         ? displayErrorMssg()
         : displayEmptyBoardMssg();
     } else {

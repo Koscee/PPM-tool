@@ -13,13 +13,7 @@ class ProjectItem extends Component {
     const { projectName, projectIdentifier, description } = this.props.project;
 
     return (
-      <div
-        className="container project-item"
-        role="button"
-        onClick={() =>
-          this.props.history.push(`/projectBoard/${projectIdentifier}`)
-        }
-      >
+      <div className="container project-item">
         <div className="card card-body mb-3 shadow-sm">
           <div className="row">
             <div className="col-2">
