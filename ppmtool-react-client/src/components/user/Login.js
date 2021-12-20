@@ -19,6 +19,10 @@ export class Login extends Component {
     if (this.props.errors !== prevProps.errors) {
       this.setState({ errors: this.props.errors });
     }
+
+    if (this.props.security.validToken) {
+      this.props.history.push('/dashboard');
+    }
   }
 
   onInputChange = (e) => {

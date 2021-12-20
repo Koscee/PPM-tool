@@ -1,7 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import jwtDecode from 'jwt-decode';
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import dispatchAction from './actions/dispatchHelper';
+import { SET_CURRENT_USER } from './actions/types';
 import './App.css';
 import Dashboard from './components/Dashboard';
 import Header from './components/layout/Header';
@@ -14,7 +17,21 @@ import UpdateProjectTask from './components/projectBoard/projectTasks/UpdateProj
 import Login from './components/user/Login';
 import Register from './components/user/Register';
 import store from './store';
+import setJwtToken from './utils/setJwtToken';
 
+const jwtToken = localStorage.getItem('jwtToken');
+
+if (jwtToken) {
+  setJwtToken(jwtToken);
+  const decodedToken = jwtDecode(jwtToken);
+  dispatchAction(store.dispatch, SET_CURRENT_USER, decodedToken);
+
+  const currentTime = Date.now() / 1000;
+
+  if (decodedToken.exp < currentTime) {
+    // handle logout
+  }
+}
 class App extends Component {
   render() {
     return (
