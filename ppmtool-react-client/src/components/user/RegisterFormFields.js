@@ -12,6 +12,7 @@ const RegisterFormFields = (props) => {
         name="fullName"
         value={fieldData.fullName}
         onInputChange={onInputChange}
+        errorMessage={fieldData.errors.fullName}
       />
 
       <Input
@@ -20,6 +21,7 @@ const RegisterFormFields = (props) => {
         name="username"
         value={fieldData.username}
         onInputChange={onInputChange}
+        errorMessage={fieldData.errors.username}
       />
 
       <Input
@@ -28,6 +30,7 @@ const RegisterFormFields = (props) => {
         name="password"
         value={fieldData.password}
         onInputChange={onInputChange}
+        errorMessage={fieldData.errors.password}
       />
 
       <Input
@@ -36,6 +39,7 @@ const RegisterFormFields = (props) => {
         name="confirmPassword"
         value={fieldData.confirmPassword}
         onInputChange={onInputChange}
+        errorMessage={fieldData.errors.confirmPassword}
       />
     </>
   );

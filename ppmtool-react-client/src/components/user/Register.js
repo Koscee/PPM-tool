@@ -18,6 +18,12 @@ export class Register extends Component {
 
   state = this.initialState;
 
+  componentDidUpdate(prevProps) {
+    if (this.props.errors !== prevProps.errors) {
+      this.setState({ errors: this.props.errors });
+    }
+  }
+
   onInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
