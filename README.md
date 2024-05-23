@@ -4,29 +4,29 @@ This is an personal project management system tool developed with React (fronten
 
 ### Modules Overview
 
-![system-modules](https://t24434348.p.clickup-attachments.com/t24434348/241f21cc-7984-4663-8d47-a531e276e0fd/image.png?view=open)
+![system-modules](https://t24434348.p.clickup-attachments.com/t24434348/636a88be-e2e1-4707-8b25-c62493607ee5/ppm-tool-module-diagram.png?view=open)
 
 ### Usecase Diagram
 
-![usecase-diagram](https://t24434348.p.clickup-attachments.com/t24434348/37b50c76-352a-4e18-9464-e5c5f6ea948b/image.png?view=open)
+![usecase-diagram](https://t24434348.p.clickup-attachments.com/t24434348/df680d22-60c0-4773-957a-565fbe7cad50/ppm-tool-usecase-diagram.png?view=open)
 
 ### Frontend Workflow
 
 - #### Create Project
 
-  ![create-project](https://t24434348.p.clickup-attachments.com/t24434348/7b1a8111-09e6-4150-aea4-73f3ab286bf5/image.png?view=open)
+  ![create-project](https://t24434348.p.clickup-attachments.com/t24434348/ed752da6-11bf-4a90-a8bb-35ef74eb79db/ppm-tool-create-project-flow-diagram.png?view=open)
 
 - #### View Project
 
-  ![view-project](https://t24434348.p.clickup-attachments.com/t24434348/dc6bf3c9-0033-4dfc-8189-8cbc337ef974/image.png?view=open)
+  ![view-project](https://t24434348.p.clickup-attachments.com/t24434348/5c11143b-a01f-4566-8bf9-f1375566c711/ppm-tool-view-project-flow-diagram.png?view=open)
 
 - #### Update Project
 
-  ![update-project](https://t24434348.p.clickup-attachments.com/t24434348/c03d7a0c-cbf1-4b8b-8b79-f7b835a7c956/image.png?view=open)
+  ![update-project](https://t24434348.p.clickup-attachments.com/t24434348/ee81ad1d-1e42-4d90-8962-6b014bafb1ef/ppm-tool-update-project-flow-diagram.png?view=open)
 
 - #### Delete Project
 
-  ![delete-project](https://t24434348.p.clickup-attachments.com/t24434348/31d63b35-ed47-45b2-9ab6-636a744f0f89/image.png?view=open)
+  ![delete-project](https://t24434348.p.clickup-attachments.com/t24434348/24a31219-73c4-4a12-af59-7d7cb37c3ce9/ppm-tool-delete-project-flow-diagram.png?view=open)
 
 ## Pages Screenshots
 
